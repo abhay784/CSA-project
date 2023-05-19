@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 
 	public void startGameThread() {
-		Thread gameThread = new Thread(this);
+		gameThread = new Thread(this);
 		gameThread.start();
 	}
 	public void run() {
@@ -54,7 +54,6 @@ public class GamePanel extends JPanel implements Runnable{
 			repaint();
 			
 
-			
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
 				remainingTime = remainingTime/1000000;
