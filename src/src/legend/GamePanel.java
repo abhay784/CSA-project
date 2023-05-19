@@ -8,10 +8,12 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable{
 	final int originalTileSize =16;
 	final int scale = 3;
-	final int tileSize = originalTileSize*scale;
+	public final int tileSize = originalTileSize*scale;
 	final int maxScreenCol = 16;
 	final int maxScreenRow =12;
 	final int screenWidth = tileSize * maxScreenCol;
@@ -19,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	Player player = new Player(this, keyH);
 	
 	int FPS = 60;
 	int posX = 100;
@@ -41,64 +44,36 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 
 	public void startGameThread() {
-		Thread gameThread = new Thread(this);
+		gameThread = new Thread(this);
 		gameThread.start();
 	}
 	public void run() {
 		double drawInterval = 1000000000/FPS;
-		double nextDrawTime = System.nanoTime()+drawInterval;
+		double delta =0;
+		long lastTime = System.nanoTime();
+		long currentTime;
 		while(gameThread!=null)
 		{
-			update();
-			
-			repaint();
-			
-
-			
-			try {
-				double remainingTime = nextDrawTime - System.nanoTime();
-				remainingTime = remainingTime/1000000;
-
-				
-				if(remainingTime<0)
-				{
-					remainingTime = 0;
-				}
-				Thread.sleep((long) remainingTime);
-				
-				nextDrawTime+=drawInterval;
-				
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			currentTime = System.nanoTime();
+			delta +=(currentTime - lastTime) / drawInterval;
+			lastTime = currentTime;
+			if(delta>=1)
+			{
+				update();
+				repaint();
+				delta--;
 			}
+            
 		}
 	}
 	public void update() {
-		if(keyH.upPressed == true)
-		{
-			posY-=userSpeed;
-		}
-		else if(keyH.downPressed == true)
-		{
-			posY+=userSpeed;
-		}
-		else if(keyH.leftPressed == true)
-		{
-			posX-=userSpeed;
-		}
-		else if(keyH.rightPressed == true)
-		{
-			posX+=userSpeed;
-		}
+		player.update();
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
 		Graphics2D g2 = (Graphics2D)g;
-		
-		g2.setColor(Color.white);
-		g2.fillRect(posX, posY, tileSize, tileSize);
+		player.draw(g2);
+
 		g2.dispose();
 	}
 }
