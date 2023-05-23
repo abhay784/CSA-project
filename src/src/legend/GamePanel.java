@@ -30,9 +30,12 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public Player player = new Player(this, keyH);
+	//public AssetSetter aSetter = newAssetSetter(this);
 	
 	int FPS = 60;
 	TileManager tileM = new TileManager(this);
+	Sound sound = new Sound();
+	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
@@ -47,7 +50,10 @@ public class GamePanel extends JPanel implements Runnable{
         });
 		
 	}
-
+	public void setupGame() {
+		//aSetter.setObject();
+		playMusic(1);
+	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -84,5 +90,13 @@ public class GamePanel extends JPanel implements Runnable{
 		player.draw(g2);
 
 		g2.dispose();
+	}
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	public void stopMusic() {
+		sound.stop();
 	}
 }

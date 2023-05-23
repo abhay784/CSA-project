@@ -86,29 +86,27 @@ public class Player extends entity {
 		collisionOn =false;
 		gp.cChecker.checkTile(this);
 		//if collision is false, player can move
-		if(collisionOn==false) {
-			switch(direction) {
-			case"up": worldY-=speed; break;
-			case"down": worldY+=speed; break;
-			case"left": worldX-=speed; break;
-			case"right": worldX+=speed; break;
-			  }
-			}
-		}
-		
-		spriteCounter++;
-		if(spriteCounter>12)
-		{
-			if(spriteNum==1) {
-				spriteNum=2;
-			}
-			else if(spriteNum==2) {
-				spriteNum=1;
-			}
-			spriteCounter=0;
-		}
-		
-	}
+		if(collisionOn==false)
+            switch(direction) {
+            case"up": worldY-=speed; break;
+            case"down": worldY+=speed; break;
+            case"left": worldX-=speed; break;
+            case"right": worldX+=speed; break;
+              }
+
+        spriteCounter++;
+        if(spriteCounter>12)
+        {
+            if(spriteNum==1) {
+                spriteNum=2;
+            }
+            else if(spriteNum==2) {
+                spriteNum=1;
+            }
+            spriteCounter=0;
+        }
+    }
+    }
 	public void draw(Graphics2D g2) {
 	//	g2.setColor(Color.white);
 	//	g2.fillRect(x, y, gp.tileSize, gp.tileSize);

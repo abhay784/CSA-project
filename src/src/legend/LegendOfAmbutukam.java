@@ -23,6 +23,7 @@ public class LegendOfAmbutukam {
 		
 		
 		gamePanel.startGameThread();
+		gamePanel.setupGame();
 		
 	}
 
