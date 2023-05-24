@@ -10,6 +10,7 @@ public class LegendOfAmbutukam {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		JFrame window = new JFrame();
+		JFrame battleScreen = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setTitle("The Legend of Ambatukam");
@@ -19,11 +20,20 @@ public class LegendOfAmbutukam {
 		
 		window.pack();
 		window.setLocationRelativeTo(null); 
-		window.setVisible(true);
+		battleScreen.setVisible(true);
 		
 		
 		gamePanel.startGameThread();
 		gamePanel.setupGame();
+		
+		battleScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		battleScreen.setResizable(false);
+		battleScreen.setTitle("The Legend of Ambatukam");
+		
+		
+		battleScreen.pack();
+		battleScreen.setLocationRelativeTo(null); 
+		battleScreen.setVisible(true);
 		
 	}
 

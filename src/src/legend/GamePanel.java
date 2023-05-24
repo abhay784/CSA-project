@@ -30,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public Player player = new Player(this, keyH);
+	//public entity npc[]= new entity[10]; 
 	//public AssetSetter aSetter = newAssetSetter(this);
 	
 	int FPS = 60;

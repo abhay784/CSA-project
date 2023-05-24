@@ -12,14 +12,14 @@ import legend.GamePanel;
 import legend.KeyHandler;
 
 public class Player extends entity {
-	GamePanel gp;
 	KeyHandler keyH;
 	
 	public final int screenX;
 	public final int screenY;
 	public Player(GamePanel gp, KeyHandler keyH)
 	{
-		this.gp =gp;
+		super(gp);
+		
 		this.keyH= keyH;
 		//subtract half the tile size to make it centered
 		screenX=gp.screenWidth/2 - gp.tileSize/2;
