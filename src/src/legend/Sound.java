@@ -27,6 +27,7 @@ public class Sound {
 	}
 	public void play() {
 		clip.start();
+		//hi
 	}
 	public void loop() {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -34,4 +35,5 @@ public class Sound {
 	public void stop() {
 		clip.stop();
 	}
+	
 }

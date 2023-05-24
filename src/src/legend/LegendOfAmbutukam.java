@@ -20,7 +20,7 @@ public class LegendOfAmbutukam {
 		
 		window.pack();
 		window.setLocationRelativeTo(null); 
-		battleScreen.setVisible(true);
+		window.setVisible(true);
 		
 		
 		gamePanel.startGameThread();
@@ -30,10 +30,15 @@ public class LegendOfAmbutukam {
 		battleScreen.setResizable(false);
 		battleScreen.setTitle("The Legend of Ambatukam");
 		
+		GamePanel gamePanel2 = new GamePanel();
+		battleScreen.add(gamePanel2);
 		
 		battleScreen.pack();
 		battleScreen.setLocationRelativeTo(null); 
 		battleScreen.setVisible(true);
+		
+		
+		gamePanel2.startGameThread();
 		
 	}
 
