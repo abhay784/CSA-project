@@ -26,19 +26,6 @@ public class LegendOfAmbutukam {
 		gamePanel.startGameThread();
 		gamePanel.setupGame();
 		
-		battleScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		battleScreen.setResizable(false);
-		battleScreen.setTitle("The Legend of Ambatukam");
-		
-		GamePanel gamePanel2 = new GamePanel();
-		battleScreen.add(gamePanel2);
-		
-		battleScreen.pack();
-		battleScreen.setLocationRelativeTo(null); 
-		battleScreen.setVisible(true);
-		
-		
-		gamePanel2.startGameThread();
 		
 	}
 
