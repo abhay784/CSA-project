@@ -16,6 +16,8 @@ public class Player extends entity {
 	
 	public final int screenX;
 	public final int screenY;
+	
+	
 	public Player(GamePanel gp, KeyHandler keyH)
 	{
 		super(gp);

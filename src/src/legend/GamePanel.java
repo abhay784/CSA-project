@@ -26,16 +26,27 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int worldWidth =tileSize * maxWorldCol;
 	public final int worldHeight =tileSize * maxWorldRow;
 	
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	Thread gameThread;
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public Player player = new Player(this, keyH);
 	//public entity npc[]= new entity[10]; 
 	//public AssetSetter aSetter = newAssetSetter(this);
+	public UI ui = new UI(this);
+	
 	
 	int FPS = 60;
 	TileManager tileM = new TileManager(this);
-	Sound sound = new Sound();
+	Sound music = new Sound();
+	Sound se = new Sound();
+	
+	//Game state
+	//depending on the state the game will do different things
+	public int gameState;
+	public final int playState =1;
+	public final int pauseState =2;
+	public final int combatState =3;
+	
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -54,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame() {
 		//aSetter.setObject();
 		playMusic(1);
+		gameState= playState;
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -82,22 +94,34 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		player.update();
+		if(gameState==playState){
+			player.update();	
+		}
+		if (gameState==pauseState) {
+			
+		}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
+		
+		//Tile
 		tileM.draw(g2);
+		
+		//player
 		player.draw(g2);
+		
+		//UI
+		ui.draw(g2);
 
 		g2.dispose();
 	}
 	public void playMusic(int i) {
-		sound.setFile(i);
-		sound.play();
-		sound.loop();
+		music.setFile(i);
+		music.play();
+		music.loop();
 	}
 	public void stopMusic() {
-		sound.stop();
+		music.stop();
 	}
 }
