@@ -99,10 +99,6 @@ public class UI {
 		g2.drawString(text, textX, textY);
 		if(commandNum==1) {
 			g2.drawString(">",textX-50,textY);
-			if(gp.keyH.enterPressed == true) {
-				subState = 2;
-				commandNum=0;
-			}
 		}
 		//run
 		text = "Run";

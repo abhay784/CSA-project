@@ -71,14 +71,17 @@ public class KeyHandler implements KeyListener{
 				}
 			}
 			if(code == KeyEvent.VK_ENTER) {
-				if(gp.ui.subState==0 && gp.ui.commandNum == 0) {
+				if(gp.ui.subState==0) {
+					if(gp.ui.commandNum == 0) {
 					gp.ui.subState = 1;
 					gp.ui.commandNum=0;
-				}
-				if(gp.ui.subState==0 && gp.ui.commandNum == 1) {
+				  }
+				if(gp.ui.commandNum == 1) {
 					gp.ui.subState = 2;
 					gp.ui.commandNum=0;
+				  }
 				}
+				
 			}
 			if(code == KeyEvent.VK_DELETE) {
 				if(gp.ui.subState ==1 || gp.ui.subState==2) {
