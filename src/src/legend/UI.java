@@ -35,7 +35,10 @@ public class UI {
 			drawPauseScreen();
 		}
 		if(gp.gameState == gp.combatState) {
-			drawCombatScreen();
+			if(gp.player.DreamyHealth>0&&gp.player.PlayerHealth>0)
+			{
+				drawCombatScreen();
+			}
 		}
 	}
 	public void drawPauseScreen() {
@@ -67,6 +70,7 @@ public class UI {
 		case 0: optionsTop(frameX, frameY); break;
 		case 1: options_combat(frameX, frameY); break;
 		case 2: options_items(frameX, frameY); break;
+		case 3: attackMode(frameX,frameY);break;
 		}
 	}
 	
@@ -163,10 +167,34 @@ public class UI {
 		textX=getXForCenteredText(text);
 		textY = frameY+gp.tileSize*2;		
 		g2.drawString(text, textX, textY);
-		if(gp.keyH.backPressed == true) {
-			subState = 0;
-			commandNum =0;
+
+	}
+	public void attackMode(int frameX, int frameY) {
+		int textX;
+		int textY;
+		String attackText;
+		if(gp.ui.commandNum==0) {
+			attackText = "Slice";
 		}
+		else if(gp.ui.commandNum==1) {
+			attackText = "NutShot";
+		}
+		else if(gp.ui.commandNum==2) {
+			attackText = "Charge";
+		}
+		else {
+			attackText = "Heal";
+		}
+		//String
+		String text = "AmbatukamHealth:"+gp.player.DreamyHealth;
+		String text2 = "PlayerHealth:"+gp.player.PlayerHealth;
+		String textUserAttack = "You used:"+attackText;
+		String textDreamyAttack = "Ambatukam"+gp.player.DreamyAttack;
+		//make it smaller
+		g2.setFont(g2.getFont().deriveFont(70F));
+		textX=getXForCenteredText(text);
+		textY = frameY+gp.tileSize*2;		
+		g2.drawString(text, textX, textY);
 	}
 	public void drawSubWindow(int x, int y, int width, int height) {
 		//if you add a 4th parameter to the color constructor
@@ -182,4 +210,5 @@ public class UI {
 		g2.setStroke(new BasicStroke(5));
 		g2.drawRoundRect(x+5,y+5, width-10, height-10, 25,25);
 	}
+	
 }

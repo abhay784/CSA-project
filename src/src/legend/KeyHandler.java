@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 	
 	GamePanel gp;
+	Sound music = new Sound();
 	public boolean upPressed,downPressed,leftPressed,rightPressed, enterPressed, backPressed = false;
 	
 	public KeyHandler(GamePanel gp) {
@@ -74,12 +75,21 @@ public class KeyHandler implements KeyListener{
 				if(gp.ui.subState==0) {
 					if(gp.ui.commandNum == 0) {
 					gp.ui.subState = 1;
-					gp.ui.commandNum=0;
+					gp.ui.commandNum=-1;
 				  }
 				if(gp.ui.commandNum == 1) {
 					gp.ui.subState = 2;
 					gp.ui.commandNum=0;
 				  }
+				
+				}
+				if(gp.ui.subState==1 && gp.ui.commandNum==0) {
+					gp.player.slice();
+					System.out.print(gp.player.DreamyHealth);
+				}
+				if(gp.player.attack) {
+					gp.ui.subState = 0;
+					gp.player.attack=false;
 				}
 				
 			}

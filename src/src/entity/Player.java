@@ -16,6 +16,8 @@ public class Player extends entity {
 	
 	public final int screenX;
 	public final int screenY;
+	public int solidAreaDefaultX = 8;
+	public int solidAreaDefaultY = 16;
 	
 	
 	public Player(GamePanel gp, KeyHandler keyH)
@@ -87,6 +89,8 @@ public class Player extends entity {
 		//check tile collision
 		collisionOn =false;
 		gp.cChecker.checkTile(this);
+		
+		gp.eHandler.checkEvent();
 		//if collision is false, player can move
 		if(collisionOn==false)
             switch(direction) {
@@ -148,5 +152,48 @@ public class Player extends entity {
 			break;
 		}
 	g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+	}
+	public int PlayerHealth;
+	public int DreamyHealth;
+	public double chargeAttack =1.0;
+	public boolean attack= false;
+	public String DreamyAttack;
+	public void slice() {
+		DreamyHealth-=50*chargeAttack;
+		chargeAttack = 1.0;
+		attack = true;
+	}
+	public void nutShot() {
+		if(Math.random()>=0.4) {
+		DreamyHealth-=75*chargeAttack;
+		chargeAttack = 1.0;
+		}
+	}
+	public void Charge() {
+		chargeAttack = 1.5;
+	}
+	public void Heal() {
+		PlayerHealth+=25;
+	}
+	public int enemyCharge = 1;
+	public void enemyAttack() {
+		
+		double afterAttack = Math.random();
+		if(afterAttack<=0.25) {
+			PlayerHealth-=25*enemyCharge;
+			DreamyAttack = "Saxophone Dance";
+		}
+		else if(afterAttack<=0.5) {
+			PlayerHealth-=25*enemyCharge;
+			DreamyAttack = "Big Buster Attack";
+		}
+		else if(afterAttack<=0.75) {
+			enemyCharge += 1;
+			DreamyAttack = "Dreamy Charge";
+		}
+		else {
+			DreamyHealth+=15;
+			DreamyAttack = "Dreamy Heal";
+		}
 	}
 }

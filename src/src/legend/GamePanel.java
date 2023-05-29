@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//public entity npc[]= new entity[10]; 
 	//public AssetSetter aSetter = newAssetSetter(this);
 	public UI ui = new UI(this);
+	public EventHandler eHandler = new EventHandler(this);
 	
 	
 	int FPS = 60;
@@ -66,6 +67,8 @@ public class GamePanel extends JPanel implements Runnable{
 		//aSetter.setObject();
 		playMusic(1);
 		gameState= playState;
+		player.DreamyHealth=250;
+		player.PlayerHealth=150;
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -90,6 +93,9 @@ public class GamePanel extends JPanel implements Runnable{
 			update();
 			
 			repaint();
+			}
+			if(gameState == combatState)
+			{
 			}
 		}
 	}
