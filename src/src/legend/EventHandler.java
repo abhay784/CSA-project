@@ -15,9 +15,9 @@ public class EventHandler
 		eventRect.x = 23;
 		eventRect.y = 23;
 		eventRect.width = 10;
-		eventRect.width = 10;
+		eventRect.height = 10;
 		eventRectDefaultX = eventRect.x;
-		eventRectDefaultY = eventRect.x;
+		eventRectDefaultY = eventRect.y;
 		
 	}
 	public void checkEvent() {
