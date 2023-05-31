@@ -12,6 +12,7 @@ public class UI {
 	Font arial_40;
 	int subState =0;
 	public int commandNum=0;
+	Font Serif;
 	
 	//Always instantiate in the constructor
 	public UI(GamePanel gp) {
@@ -27,6 +28,10 @@ public class UI {
 		g2.setFont(arial_40);
 		g2.setColor(Color.white);
 		
+		if(gp.gameState==gp.titleState) {
+			drawTitleScreen();
+		}
+		
 		if(gp.gameState == gp.playState){
 			//playState stuff later
 		}
@@ -39,6 +44,30 @@ public class UI {
 			{
 				drawCombatScreen();
 			}
+		}
+	}
+	public void drawTitleScreen() {
+		g2.setFont(Serif);
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
+		String text = "The Legend Of Dreamy";
+		int x = getXForCenteredText(text);
+		int y = gp.tileSize*3;
+		
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		x = gp.screenWidth/2-50;
+		y = gp.tileSize*4;
+		g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+		
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
+		
+		text = "START GAME";
+		x = getXForCenteredText(text);
+		y += gp.tileSize*5;;
+		g2.drawString(text, x, y);
+		if(commandNum == 0) {
+			g2.drawString(">", x-gp.tileSize, y);
 		}
 	}
 	public void drawPauseScreen() {

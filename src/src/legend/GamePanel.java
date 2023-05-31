@@ -47,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState =1;
 	public final int pauseState =2;
 	public final int combatState =3;
+	public final int titleState = 0;
 	
 	
 	public GamePanel() {
@@ -65,8 +66,8 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void setupGame() {
 		//aSetter.setObject();
-		playMusic(1);
-		gameState= playState;
+		playMusic(2);
+		gameState= titleState;
 		player.DreamyHealth=250;
 		player.PlayerHealth=150;
 	}
@@ -112,15 +113,20 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D)g;
 		
 		//Tile
-		tileM.draw(g2);
-		
-		//player
-		player.draw(g2);
-		
-		//UI
-		ui.draw(g2);
+		if(gameState == titleState)
+		{
+			ui.draw(g2);
+		}
+		else {
+			tileM.draw(g2);
+			
+			player.draw(g2);
+			
+			//UI
+			ui.draw(g2);
 
-		g2.dispose();
+			g2.dispose();
+		}
 	}
 	public void playMusic(int i) {
 		music.setFile(i);
