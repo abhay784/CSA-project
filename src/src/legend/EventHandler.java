@@ -6,6 +6,7 @@ public class EventHandler
 {
 	GamePanel gp;
 	Rectangle eventRect;
+	Sound music = new Sound();
 	public int eventRectDefaultX, eventRectDefaultY;
 	
 	public EventHandler(GamePanel gp) {
@@ -25,6 +26,8 @@ public class EventHandler
 			if(gp.gameState == gp.playState) {
 				gp.gameState = gp.combatState;
 				System.out.print("hi");
+				gp.stopMusic();
+				gp.playMusic(0);
 			}
 		}
 	}
