@@ -177,42 +177,55 @@ public class Player extends entity {
 	public double chargeAttack =1.0;
 	public boolean attack= false;
 	public String DreamyAttack;
+	public boolean attackLanded = false;
+	public int counter = 1;
 	public void slice() {
 		DreamyHealth-=50*chargeAttack;
 		chargeAttack = 1.0;
-		attack = true;
 	}
 	public void nutShot() {
-		if(Math.random()>=0.4) {
-		DreamyHealth-=75*chargeAttack;
-		chargeAttack = 1.0;
+		if(Math.random()>=0.3) {
+			DreamyHealth-=75*chargeAttack;
+			chargeAttack = 1.0;
+			attackLanded = true;
 		}
 	}
 	public void Charge() {
 		chargeAttack = 1.5;
 	}
 	public void Heal() {
-		PlayerHealth+=25;
+		if(counter<4)
+		{
+			PlayerHealth+=50;
+		}
 	}
 	public int enemyCharge = 1;
 	public void enemyAttack() {
 		
 		double afterAttack = Math.random();
 		if(afterAttack<=0.25) {
-			PlayerHealth-=25*enemyCharge;
+			PlayerHealth-=30*enemyCharge;
 			DreamyAttack = "Saxophone Dance";
+			enemyCharge--;
+			attack = true;
+
 		}
 		else if(afterAttack<=0.5) {
-			PlayerHealth-=25*enemyCharge;
+			PlayerHealth-=30*enemyCharge;
 			DreamyAttack = "Big Buster Attack";
+			enemyCharge--;
+			attack = true;
 		}
 		else if(afterAttack<=0.75) {
 			enemyCharge += 1;
 			DreamyAttack = "Dreamy Charge";
+			attack = true;
 		}
 		else {
-			DreamyHealth+=15;
-			DreamyAttack = "Dreamy Heal";
+			PlayerHealth-=20;
+			DreamyAttack = "Glock";
+			enemyCharge--;
+			attack = true;
 		}
 	}
 }

@@ -23,9 +23,8 @@ public class KeyHandler implements KeyListener{
 		int code = e.getKeyCode();
 		
 		if(gp.gameState == gp.titleState) {
-			if(gp.ui.commandNum == 0) {
+			if(code == KeyEvent.VK_ENTER && gp.ui.commandNum == 0) {
 				gp.gameState = gp.playState;
-				System.out.print("yo");
 				gp.stopMusic();
 				gp.playMusic(1);
 			}
@@ -35,6 +34,7 @@ public class KeyHandler implements KeyListener{
 		}
 		if(code == KeyEvent.VK_S) {
 			downPressed = true;
+
 		}
 		if(code == KeyEvent.VK_A) {
 			leftPressed = true;
@@ -67,6 +67,7 @@ public class KeyHandler implements KeyListener{
 			
 			if(code== KeyEvent.VK_W) {
 				gp.ui.commandNum--;
+				gp.playSE(3);
 				//gp.playSE(9);
 				if(gp.ui.commandNum <0) {
 					gp.ui.commandNum=maxCommandNum;
@@ -74,6 +75,7 @@ public class KeyHandler implements KeyListener{
 			}
 			if(code== KeyEvent.VK_S) {
 				gp.ui.commandNum++;
+				gp.playSE(3);
 				//gp.playSE(9);
 				if(gp.ui.commandNum >maxCommandNum) {
 					gp.ui.commandNum=0;
@@ -82,30 +84,53 @@ public class KeyHandler implements KeyListener{
 			if(code == KeyEvent.VK_ENTER) {
 				if(gp.ui.subState==0) {
 					if(gp.ui.commandNum == 0) {
-					gp.ui.subState = 1;
-					gp.ui.commandNum=-1;
-				  }
-				if(gp.ui.commandNum == 1) {
-					gp.ui.subState = 2;
-					gp.ui.commandNum=0;
-				  }
+						gp.playSE(3);
+						gp.ui.subState = 1;
+						gp.ui.commandNum=-1;
+					}
+					if(gp.ui.commandNum == 1) {
+						gp.playSE(3);
+						gp.ui.subState = 2;
+						gp.ui.commandNum=0;
+					}
 				
 				}
 				if(gp.ui.subState==1 && gp.ui.commandNum==0) {
 					gp.player.slice();
+					gp.player.enemyAttack();
+					System.out.print(gp.player.DreamyHealth);
+				}
+				if(gp.ui.subState==1 && gp.ui.commandNum==1) {
+					gp.player.nutShot();
+					gp.player.enemyAttack();
+					System.out.print(gp.player.DreamyHealth);
+				}
+				if(gp.ui.subState==1 && gp.ui.commandNum==2) {
+					gp.player.Charge();
+					gp.player.enemyAttack();
+					System.out.print(gp.player.DreamyHealth);
+				}
+				if(gp.ui.subState==1 && gp.ui.commandNum==3) {
+					gp.player.Heal();
+					gp.player.enemyAttack();
+					gp.player.counter++;
 					System.out.print(gp.player.DreamyHealth);
 				}
 				if(gp.player.attack) {
-					gp.ui.subState = 0;
+					gp.ui.subState = 3;
 					gp.player.attack=false;
 				}
 				
 			}
 			if(code == KeyEvent.VK_DELETE) {
 				if(gp.ui.subState ==1 || gp.ui.subState==2) {
-				gp.ui.subState = 0;
-				gp.ui.commandNum=0;
-			 }
+					gp.ui.subState = 0;
+					gp.ui.commandNum=0;
+				}
+				if(gp.ui.subState==3) {
+					gp.ui.subState= 0;
+					gp.ui.commandNum = -1;
+				}
 			}
 		}
 	}

@@ -11,9 +11,10 @@ public class Sound {
 	URL soundURL[]= new URL[30];
 	
 	public Sound() {
-		soundURL[0]= getClass().getResource("/sound/2023-05-22 18-29-45.wav");
-		soundURL[1]= getClass().getResource("/sound/2023-05-22 18-21-26.wav");
-		soundURL[2]= getClass().getResource("/sound/2023-05-22 18-16-28.wav");
+		soundURL[0]= getClass().getResource("/sound/2023-05-22 18-29-45_Trim (2).wav");
+		soundURL[1]= getClass().getResource("/sound/2023-05-22 18-21-26_Trim.wav");
+		soundURL[2]= getClass().getResource("/sound/2023-05-22 18-16-28_Trim.wav");
+		soundURL[3]= getClass().getResource("/sound/cursor.wav");
 	}
 	public void setFile(int i)
 	{
@@ -35,5 +36,6 @@ public class Sound {
 	public void stop() {
 		clip.stop();
 	}
+
 	
 }
