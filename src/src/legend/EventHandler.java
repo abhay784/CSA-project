@@ -21,7 +21,7 @@ public class EventHandler
 		
 	}
 	public void checkEvent() {
-		if(hit(4,10,"any")==true) {
+		if(hit(18, 8,"any")==true) {
 			if(gp.gameState == gp.playState) {
 				gp.gameState = gp.combatState;
 				System.out.print("hi");
@@ -34,7 +34,7 @@ public class EventHandler
 		gp.player.solidArea.x = gp.player.worldX+gp.player.solidArea.x;
 		gp.player.solidArea.y = gp.player.worldY+gp.player.solidArea.y;
 		eventRect.x = eventCol*gp.tileSize + eventRect.x;
-		eventRect.y = eventCol*gp.tileSize + eventRect.y;
+		eventRect.y = eventRow*gp.tileSize + eventRect.y;
 		if(gp.player.solidArea.intersects(eventRect)) {
 			if(gp.player.direction.contentEquals(reqDirection)||reqDirection.contentEquals("any")) {
 				hit = true;

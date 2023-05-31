@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int screenHeight = tileSize * maxScreenRow;
 	
 	//world settings
-	public final int maxWorldCol=16;
+	public final int maxWorldCol=23;
 	public final int maxWorldRow=12;
 	public final int worldWidth =tileSize * maxWorldCol;
 	public final int worldHeight =tileSize * maxWorldRow;
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void setupGame() {
 		//aSetter.setObject();
-		playMusic(1);
+		playMusic(2);
 		gameState= playState;
 		player.DreamyHealth=250;
 		player.PlayerHealth=150;

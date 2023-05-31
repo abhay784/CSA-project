@@ -18,7 +18,7 @@ public class TileManager {
  public int mapTileNum[][];
  public TileManager(GamePanel gp) {
 	 this.gp =gp;
-	 tile = new tile[20];
+	 tile = new tile[30];
 	 mapTileNum= new int[gp.maxWorldCol] [gp.maxWorldRow];
 	 
 	 getTileImage();
@@ -45,7 +45,13 @@ public class TileManager {
 	  setup(16,"wood_white_corner_right", false);
 	  setup(17,"stone_wall", true);
 	  setup(18, "wood_wall", false);
-	  
+	  setup(19,"black_tile_outside_grass_right", true);
+	  setup(20,"wood_white_left", false);
+	  setup(21,"wood_white_cornor_left", false);
+	  setup(22,"stone_wall_top", true);
+	  setup(23,"dreamy", true);
+	  setup(24,"throne", true);
+	  setup(25, "torch", false);
   }
   
  public void setup( int index, String imageName, boolean collision) {
