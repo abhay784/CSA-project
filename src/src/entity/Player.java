@@ -172,13 +172,14 @@ public class Player extends entity {
 		  }
 	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 	}
-	public int PlayerHealth;
-	public int DreamyHealth;
+	public double PlayerHealth;
+	public double DreamyHealth;
 	public double chargeAttack =1.0;
 	public boolean attack= false;
 	public String DreamyAttack;
 	public boolean attackLanded = false;
 	public int counter = 1;
+	public double guard = 1;
 	public void slice() {
 		DreamyHealth-=50*chargeAttack;
 		chargeAttack = 1.0;
@@ -198,20 +199,22 @@ public class Player extends entity {
 		{
 			PlayerHealth+=50;
 		}
+	
 	}
 	public int enemyCharge = 1;
 	public void enemyAttack() {
 		
 		double afterAttack = Math.random();
 		if(afterAttack<=0.25) {
-			PlayerHealth-=30*enemyCharge;
+			PlayerHealth-=30*enemyCharge*guard;
 			DreamyAttack = "Saxophone Dance";
 			enemyCharge--;
+			
 			attack = true;
 
 		}
 		else if(afterAttack<=0.5) {
-			PlayerHealth-=30*enemyCharge;
+			PlayerHealth-=30*enemyCharge*guard;
 			DreamyAttack = "Big Buster Attack";
 			enemyCharge--;
 			attack = true;
@@ -222,7 +225,7 @@ public class Player extends entity {
 			attack = true;
 		}
 		else {
-			PlayerHealth-=20;
+			PlayerHealth-=20*enemyCharge*guard;
 			DreamyAttack = "Glock";
 			enemyCharge--;
 			attack = true;

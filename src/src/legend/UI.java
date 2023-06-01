@@ -129,6 +129,8 @@ public class UI {
 		case 1: options_combat(frameX, frameY); break;
 		case 2: options_items(frameX, frameY); break;
 		case 3: attackMode(frameX,frameY);break;
+		
+		case 5: run(frameX,frameY); break;
 		}
 	}
 	
@@ -227,10 +229,12 @@ public class UI {
 		g2.drawString(text, textX, textY);
 
 	}
+	public String attackText;
+	public boolean check;
 	public void attackMode(int frameX, int frameY) {
 		int textX;
 		int textY;
-		String attackText;
+
 		if(gp.ui.commandNum==0) {
 			attackText = "Slice";
 		}
@@ -244,7 +248,8 @@ public class UI {
 				attackText = "NutShot,but it missed";
 			}
 		}
-		else if(gp.ui.commandNum==2) {
+		else if(gp.ui.commandNum==2)
+		{
 			attackText = "Charge";
 		}
 		else {
@@ -256,6 +261,9 @@ public class UI {
 			}
 			
 		}
+		if(check) {
+			attackText = "Guard";
+		}
 		//String
 		String text = "DreamyHealth:"+gp.player.DreamyHealth;
 		String text2 = "PlayerHealth:"+gp.player.PlayerHealth;
@@ -265,10 +273,10 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(50F));
 		textX=getXForCenteredText(text);
 		textY = frameY+gp.tileSize*2;		
-		g2.drawString(text, textX-165, textY-50);
-		g2.drawString(text2, textX-165, textY);
-		g2.drawString(textUserAttack, textX-165, textY+50);
-		g2.drawString(textDreamyAttack, textX-165, textY+100);
+		g2.drawString(text, textX-150, textY-50);
+		g2.drawString(text2, textX-150, textY);
+		g2.drawString(textUserAttack, textX-150, textY+50);
+		g2.drawString(textDreamyAttack, textX-150, textY+100);
 		
 	}
 	public void drawSubWindow(int x, int y, int width, int height) {
@@ -321,6 +329,31 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(140F));
 		g2.drawString(text2, textX2-gp.tileSize*4, textY+gp.tileSize*3);
 		g2.drawImage(playerWin, gp.tileSize*5, gp.tileSize*6, gp.tileSize*6, gp.tileSize*4, null);
+	}
+	public void run(int frameX, int frameY) {
+		int textX;
+		int textY;
+		
+		g2.setFont(g2.getFont().deriveFont(50F));
+		String text = "You attempt to run!";
+		textX=getXForCenteredText(text)-gp.tileSize*3;
+		textY = frameY+gp.tileSize+10*2;
+		g2.drawString(text, textX, textY);
+		
+		text = "However, you remember that";
+		textX=getXForCenteredText(text)-gp.tileSize+20;
+		textY = frameY+gp.tileSize*2+20;		
+		g2.drawString(text, textX, textY);
+		
+		text ="Dreamy slaughtered your family";
+		textX=getXForCenteredText(text);
+		textY = frameY+gp.tileSize*3+20;		
+		g2.drawString(text, textX, textY);
+		
+		text="and you must get revenge.";
+		textX=getXForCenteredText(text)-gp.tileSize-10;
+		textY = frameY+gp.tileSize*4+20;		
+		g2.drawString(text, textX, textY);
 	}
 }
 

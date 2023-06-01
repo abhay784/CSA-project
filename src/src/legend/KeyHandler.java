@@ -93,6 +93,21 @@ public class KeyHandler implements KeyListener{
 						gp.ui.subState = 2;
 						gp.ui.commandNum=0;
 					}
+					if(gp.ui.commandNum == maxCommandNum) {
+						gp.ui.subState = 5;
+						gp.ui.commandNum=0;
+						gp.playSE(3);
+					}
+					if(gp.ui.commandNum == 2)
+					{
+						gp.playSE(3);
+						gp.player.guard = 0.5;
+						gp.player.enemyAttack();
+						gp.ui.check = true;
+						gp.ui.subState = 3;
+						
+						
+					}
 				
 				}
 				if(gp.ui.subState==1 && gp.ui.commandNum==0) {
@@ -130,7 +145,12 @@ public class KeyHandler implements KeyListener{
 				if(gp.ui.subState==3) {
 					gp.ui.subState= 0;
 					gp.ui.commandNum = -1;
+					gp.ui.check = false;
 				}
+				if(gp.ui.subState ==5) {
+					 gp.ui.subState =0;	
+				}
+
 			}
 		}
 	}
