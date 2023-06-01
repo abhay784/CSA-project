@@ -66,7 +66,7 @@ public class UI {
 			if(gp.player.PlayerHealth<=0) {
 				drawGameOverScreen();
 			}
-			if(gp.player.DreamyHealth<=0) {
+			if(gp.player.DreamyHealth<=07&&gp.player.PlayerHealth>0) {
 				drawWinScreen();
 			}
 		}

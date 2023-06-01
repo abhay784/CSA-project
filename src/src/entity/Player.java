@@ -208,7 +208,7 @@ public class Player extends entity {
 		if(afterAttack<=0.25) {
 			PlayerHealth-=30*enemyCharge*guard;
 			DreamyAttack = "Saxophone Dance";
-			enemyCharge--;
+			enemyCharge = 1;
 			
 			attack = true;
 
@@ -216,18 +216,18 @@ public class Player extends entity {
 		else if(afterAttack<=0.5) {
 			PlayerHealth-=30*enemyCharge*guard;
 			DreamyAttack = "Big Buster Attack";
-			enemyCharge--;
+			enemyCharge = 1;
 			attack = true;
 		}
 		else if(afterAttack<=0.75) {
-			enemyCharge += 1;
+			enemyCharge = 2;
 			DreamyAttack = "Dreamy Charge";
 			attack = true;
 		}
 		else {
 			PlayerHealth-=20*enemyCharge*guard;
 			DreamyAttack = "Glock";
-			enemyCharge--;
+			enemyCharge = 1;
 			attack = true;
 		}
 	}
